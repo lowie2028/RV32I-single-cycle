@@ -1,8 +1,8 @@
-module control (instruction, branch_enable, mem_write_enable, reg_write_enable, ALU_op, ALU_imm, ill_instr);
+module control (instruction, branch_enable, mem_write_enable, reg_write_enable, mem_to_reg, ALU_op, ALU_imm, ill_instr);
 
     // IO
     input [31:0] instruction;
-    output reg branch_enable, mem_write_enable, reg_write_enable, ALU_imm, ill_instr;
+    output reg branch_enable, mem_write_enable, reg_write_enable, mem_to_reg, ALU_imm, ill_instr;
     output reg [3:0] ALU_op;
 
     // -- Include definitions ---------------------------------
@@ -74,6 +74,64 @@ module control (instruction, branch_enable, mem_write_enable, reg_write_enable, 
     // Fence instructions group NOT IMPLEMENTED
     // Csr instructions group NOT IMPLEMENTED
 
-    // -- Set control signals TODO ----------------------------
+    // -- Set control signals --------------------------------- TODO
+    always @(*) begin
+        // Reset all signals
+        branch_enable <= 0;
+        mem_write_enable <= 0;
+        reg_write_enable <= 0;
+        mem_to_reg <= 0;
+        ALU_imm <= 0;
+        ill_instr <= 0;
+        // Set signal if needed for instruction
+        case (1'b1)
+            //lui_inst:
+            //auipc_inst:
+            //jal_inst:
+            //jalr_inst: 
+            // Branch group
+            beq_inst: begin ALU_op <= ALU_SUB; branch_enable <= 1; end
+            //bne_inst: 
+            //blt_inst: 
+            //bge_inst: 
+            //bltu_inst: 
+            //bgeu_inst: 
+            // Load group
+            //lb_inst: 
+            //lh_inst: 
+            lw_inst: begin ALU_op <= ALU_ADD; ALU_imm <= 1; reg_write_enable <= 1; mem_to_reg <= 1; end
+            //ld_inst: 
+            //lbu_inst: 
+            //lhu_inst: 
+            //lwu_inst: 
+            // Store group
+            //sb_inst: 
+            //sh_inst: 
+            sw_inst: begin ALU_op = ALU_ADD; ALU_imm <= 1; mem_write_enable <= 1; end
+            //sd_inst: 
+            // Arithmetic & logic immediate group
+            //addi_inst:
+            //slli_inst:
+            //slti_inst: 
+            //sltiu_inst: 
+            //xori_inst:
+            //srli_inst:
+            //srai_inst:
+            //ori_inst: 
+            //andi_inst:
+            // Arithmetic & logic R-type instructions
+            add_inst: begin ALU_op <= ALU_ADD; reg_write_enable <= 1; end
+            sub_inst: begin ALU_op <= ALU_SUB; reg_write_enable <= 1; end
+            //sll_inst: 
+            //slt_inst: 
+            //sltu_inst: 
+            //xor_inst: 
+            //srl_inst: 
+            //sra_inst: 
+            //or_inst: 
+            //and_inst: 
+            default: ill_instr <= 1;
+        endcase
+    end
     
 endmodule
