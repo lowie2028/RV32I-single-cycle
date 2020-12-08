@@ -16,7 +16,7 @@ module instruction_fetch (branch_offset, branch_enable, instruction, clock, rese
             pc_out <= pc_in;
     
     // Program counter control
-    assign pc_in = (branch_enable) ? (pc_out + (branch_offset << 2)) : (pc_out + 4);
+    assign pc_in = (branch_enable) ? (pc_out + (branch_offset)) : (pc_out + 4);
 
     // Fetch instruction from register
     instruction_memory #(.XLEN(XLEN)) im (pc_out, instruction);
