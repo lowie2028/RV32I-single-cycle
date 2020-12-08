@@ -116,7 +116,7 @@ module control (
             // Store group
             //sb_inst: 
             //sh_inst: 
-            sw_inst: begin ALU_op = ALU_ADD; ALU_imm <= 1; mem_write_enable <= 1; end
+            sw_inst: begin ALU_op <= ALU_ADD; ALU_imm <= 1; mem_write_enable <= 1; end
             //sd_inst: 
             // Arithmetic & logic immediate group
             //addi_inst:

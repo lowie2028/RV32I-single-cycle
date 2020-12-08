@@ -46,7 +46,7 @@ always @(*) begin
         B: immediate_out = {{(XLEN - 12){instruction[31]}}, instruction[7], instruction[30:25], instruction[11:8], 1'b0};
         U: immediate_out = {{(XLEN - 31){instruction[31]}}, instruction[30:20], instruction[19:12], 12'b0};
         J: immediate_out = {{(XLEN - 20){instruction[31]}}, instruction[19:12], instruction[20], instruction[30:25], instruction[24:21], 1'b0};
-        default: immediate_out = XLEN{1'b0};  // Happens in case of ILLEGAL or R-Type
+        default: immediate_out = {XLEN{1'b0}};  // Happens in case of ILLEGAL or R-Type
     endcase
 end    
 endmodule
