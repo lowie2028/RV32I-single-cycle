@@ -9,8 +9,8 @@ parameter XLEN = 32;
 
 input [XLEN-1:0] in_0, in_1;
 input [3:0] operation;
-output [XLEN-1:0] out;
-output zero;
+output reg [XLEN-1:0] out;
+output reg zero;
 
 `include "ALU_codes.h"
 always @(*) begin
@@ -21,7 +21,7 @@ always @(*) begin
         ALU_SUB: out <= in_0 - in_1;
         default: out <= {XLEN{1'b0}};
     endcase
-    zero <= (out == XLEN`b0);
+    zero <= (out == {XLEN{1'b0}});
 end
     
 endmodule

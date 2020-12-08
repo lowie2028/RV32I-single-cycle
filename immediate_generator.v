@@ -5,9 +5,9 @@ module immediate_generator (
 parameter XLEN = 32;
 
 input [31:0] instruction;
-output [XLEN-1:0] immediate_out;
+output reg [XLEN-1:0] immediate_out;
 
-wire [2:0] instruction_format;
+reg [2:0] instruction_format;
 
 // Instruction format coding
 parameter R = 3'b000;  // R-Type: Register operations
