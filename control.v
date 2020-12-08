@@ -1,4 +1,13 @@
-module control (instruction, branch_enable, mem_write_enable, reg_write_enable, mem_to_reg, ALU_op, ALU_imm, ill_instr);
+module control (
+    instruction, 
+    branch_enable, 
+    mem_write_enable, 
+    reg_write_enable, 
+    mem_to_reg, 
+    ALU_op, 
+    ALU_imm, 
+    ill_instr
+);
 
     // IO
     input [31:0] instruction;
