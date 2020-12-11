@@ -120,7 +120,7 @@ module control (
             sw_inst: begin ALU_op <= ALU_ADD; ALU_imm <= 1; mem_write_enable <= 1; end
             //sd_inst: 
             // Arithmetic & logic immediate group
-            //addi_inst:
+            addi_inst: begin ALU_op <= ALU_ADD; ALU_imm <= 1; reg_write_enable <= 1; end
             //slli_inst:
             //slti_inst: 
             //sltiu_inst: 
