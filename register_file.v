@@ -9,12 +9,15 @@ module register_file (read_reg_0, read_reg_1, write_reg, write_data, write_enabl
     // Reg_file is 32 words deep for RV32I
     reg [XLEN-1:0] reg_file [31:0];
 
-    // x0 is always zero
-    always @ (*) reg_file[0] <= 32'b0;
-
     // Process for reading
     always @ (*) begin
+			if (read_reg_0 == 0)	// x0 is always zero
+				read_data_0 <= 0;
+			else
             read_data_0 <= reg_file [read_reg_0];
+			if (read_data_1 == 0) // x0 is always zero
+				read_data_1 <= 0;
+			else
             read_data_1 <= reg_file [read_reg_1];
     end
 
