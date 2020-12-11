@@ -91,6 +91,7 @@ module control (
         reg_write_enable <= 0;
         mem_to_reg <= 0;
         ALU_imm <= 0;
+		ALU_op <= 4'b0;
         ill_instr <= 0;
         // Set signal if needed for instruction
         case (1'b1)
