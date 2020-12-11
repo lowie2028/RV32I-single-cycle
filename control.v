@@ -137,8 +137,8 @@ module control (
             //xor_inst: 
             //srl_inst: 
             //sra_inst: 
-            //or_inst: 
-            //and_inst: 
+            or_inst: begin ALU_op <= ALU_OR; reg_write_enable <= 1; end
+            and_inst: begin ALU_op <= ALU_AND; reg_write_enable <= 1; end
             default: ill_instr <= 1;
         endcase
     end
