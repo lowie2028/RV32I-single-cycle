@@ -28,15 +28,24 @@ module data_memory (address, write_data, write_enable, read_data, clock, reset, 
     always @ (posedge clock) begin
         if (reset)
             for (i=0; i < DEPTH; i=i+1)
-                mem [i] <= {XLEN{1'b0}};
+                    mem [i] <= {XLEN{1'b0}};
         else if (write_enable == 1) begin
-            if (address >= 0 && address < DEPTH) begin   // Only write when within bounds
-                mem [address] <= write_data;
+            if (address >= 0 && address < DEPTH) begin   // Only write when within bounds and not driven by IO
+                if (address < IO_BASE_ADDR + 7 || address > IO_BASE_ADDR + 8) begin
+                    mem [address] <= write_data;
+                end
             end
         end
+        // Set memory mapped inputs
+        // --------------------
+        // |13   |9          0|
+        // | KEY |     SW     |
+        // --------------------
+        mem [IO_BASE_ADDR + 7] <= io_input_bus[9:0];
+        mem [IO_BASE_ADDR + 8] <= io_input_bus[13:10];
     end
 
-    // Io mapping
+    // Set memory mapped outputs
     // -------------------------------------------------------
     // |51    |44    |37    |30    |23    |16    |9         0|
     // | HEX5 | HEX4 | HEX3 | HEX2 | HEX1 | HEX0 |    LED    |
@@ -48,12 +57,4 @@ module data_memory (address, write_data, write_enable, read_data, clock, reset, 
     assign io_output_bus[37:31] = mem [IO_BASE_ADDR + 4];
     assign io_output_bus[44:38] = mem [IO_BASE_ADDR + 5];
     assign io_output_bus[51:45] = mem [IO_BASE_ADDR + 6];
-    // --------------------
-    // |13   |9          0|
-    // | KEY |     SW     |
-    // --------------------
-    always @(posedge clock) begin
-        mem [IO_BASE_ADDR + 7] <= io_input_bus[9:0];
-        mem [IO_BASE_ADDR + 8] <= io_input_bus[13:10];
-    end
 endmodule
