@@ -66,7 +66,8 @@ ALU ALU (
     .zero(zero)
 );
 
-data_memory DM (
+parameter DATA_DEPTH = 128;
+data_memory #(.XLEN(XLEN), .DEPTH(DATA_DEPTH)) DM (
     .address(alu_out), 
     .write_data(reg_data_1), 
     .write_enable(mem_write_enable), 
