@@ -1,10 +1,17 @@
 module core (
     clock,
-    reset
+    reset,
+    io_input_bus,
+    io_output_bus
 );
 parameter XLEN = 32;
+parameter IO_INPUT_BUS_LEN = 14;
+parameter IO_OUTPUT_BUS_LEN = 52;
+parameter IO_BASE_ADDR = 100;
 
 input clock, reset;
+input [IO_INPUT_BUS_LEN-1:0] io_input_bus;
+output [IO_OUTPUT_BUS_LEN-1:0] io_output_bus;
 
 // Control outputs
 wire branch_enable, mem_write_enable, reg_write_enable, mem_to_reg, alu_imm, ill_instr;
@@ -67,13 +74,21 @@ ALU ALU (
 );
 
 parameter DATA_DEPTH = 128;
-data_memory #(.XLEN(XLEN), .DEPTH(DATA_DEPTH)) DM (
+data_memory #(
+    .XLEN(XLEN), 
+    .DEPTH(DATA_DEPTH), 
+    .IO_OUTPUT_BUS_LEN(IO_OUTPUT_BUS_LEN), 
+    .IO_INPUT_BUS_LEN(IO_INPUT_BUS_LEN), 
+    .IO_BASE_ADDR(IO_BASE_ADDR)
+    ) DM (
     .address(alu_out), 
     .write_data(reg_data_1), 
     .write_enable(mem_write_enable), 
     .read_data(mem_data), 
     .clock(clock), 
-    .reset(reset)
+    .reset(reset),
+    .io_input_bus(io_input_bus),
+    .io_output_bus(io_output_bus)
 );
     
 endmodule
