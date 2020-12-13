@@ -1,6 +1,6 @@
 module instruction_memory (read_address, instruction);
     parameter XLEN = 32;
-    parameter DEPTH = 64;
+    parameter DEPTH = 265;
     
     input [XLEN-1:0] read_address;
     output reg [XLEN-1:0] instruction;
