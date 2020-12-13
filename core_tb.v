@@ -4,7 +4,7 @@ module core_tb;
     parameter XLEN = 32;
     parameter IO_INPUT_BUS_LEN = 14;
     parameter IO_OUTPUT_BUS_LEN = 52;
-    parameter IO_BASE_ADDR = 'h15;
+    parameter IO_BASE_ADDR = 'h60;
 
     reg clock, reset;
     wire [IO_INPUT_BUS_LEN-1:0] io_input_bus;
