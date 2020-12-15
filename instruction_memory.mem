@@ -2,6 +2,8 @@
 00500313		//addi x6 x0 5
 06000F13		//addi x30 x0 96
 01500F93		//addi x31 x0 21
+00000413		//addi x8 x0 0
+00040E63		//beq x8 x0 28
 01100E93		//addi x29 x0 17
 0FF00E13		//addi x28 x0 255
 01CE0E33		//add x28 x28 x28
@@ -9,9 +11,11 @@ FFFE8E93		//addi x29 x29 -1
 000E8463		//beq x29 x0 8
 FE000AE3		//beq x0 x0 -12
 005F2023		//sw x5 0(x30)
+04040063		//beq x8 x0 64
 FFFE0E13		//addi x28 x28 -1
 000E0463		//beq x28 x0 8
 FE000CE3		//beq x0 x0 -8
+00040E63		//beq x8 x0 28
 01100E93		//addi x29 x0 17
 0FF00E13		//addi x28 x0 255
 01CE0E33		//add x28 x28 x28
@@ -19,9 +23,11 @@ FFFE8E93		//addi x29 x29 -1
 000E8463		//beq x29 x0 8
 FE000AE3		//beq x0 x0 -12
 006F2023		//sw x6 0(x30)
+00040863		//beq x8 x0 16
 FFFE0E13		//addi x28 x28 -1
 000E0463		//beq x28 x0 8
 FE000CE3		//beq x0 x0 -8
+00040E63		//beq x8 x0 28
 01100E93		//addi x29 x0 17
 0FF00E13		//addi x28 x0 255
 01CE0E33		//add x28 x28 x28
@@ -30,9 +36,11 @@ FFFE8E93		//addi x29 x29 -1
 FE000AE3		//beq x0 x0 -12
 005303B3		//add x7 x6 x5
 007F2023		//sw x7 0(x30)
+00040863		//beq x8 x0 16
 FFFE0E13		//addi x28 x28 -1
 000E0463		//beq x28 x0 8
 FE000CE3		//beq x0 x0 -8
+00040E63		//beq x8 x0 28
 01100E93		//addi x29 x0 17
 0FF00E13		//addi x28 x0 255
 01CE0E33		//add x28 x28 x28
@@ -41,9 +49,11 @@ FFFE8E93		//addi x29 x29 -1
 FE000AE3		//beq x0 x0 -12
 406283B3		//sub x7 x5 x6
 007F2023		//sw x7 0(x30)
+00040863		//beq x8 x0 16
 FFFE0E13		//addi x28 x28 -1
 000E0463		//beq x28 x0 8
 FE000CE3		//beq x0 x0 -8
+00040E63		//beq x8 x0 28
 01100E93		//addi x29 x0 17
 0FF00E13		//addi x28 x0 255
 01CE0E33		//add x28 x28 x28
@@ -52,9 +62,11 @@ FFFE8E93		//addi x29 x29 -1
 FE000AE3		//beq x0 x0 -12
 0062F3B3		//and x7 x5 x6
 007F2023		//sw x7 0(x30)
+00040863		//beq x8 x0 16
 FFFE0E13		//addi x28 x28 -1
 000E0463		//beq x28 x0 8
 FE000CE3		//beq x0 x0 -8
+00040E63		//beq x8 x0 28
 01100E93		//addi x29 x0 17
 0FF00E13		//addi x28 x0 255
 01CE0E33		//add x28 x28 x28
@@ -63,9 +75,11 @@ FFFE8E93		//addi x29 x29 -1
 FE000AE3		//beq x0 x0 -12
 0062E3B3		//or x7 x5 x6
 007F2023		//sw x7 0(x30)
+00040863		//beq x8 x0 16
 FFFE0E13		//addi x28 x28 -1
 000E0463		//beq x28 x0 8
 FE000CE3		//beq x0 x0 -8
+00040E63		//beq x8 x0 28
 01100E93		//addi x29 x0 17
 0FF00E13		//addi x28 x0 255
 01CE0E33		//add x28 x28 x28
@@ -74,9 +88,11 @@ FFFE8E93		//addi x29 x29 -1
 FE000AE3		//beq x0 x0 -12
 008F2383		//lw x7 8(x30)
 007F2023		//sw x7 0(x30)
+00040863		//beq x8 x0 16
 FFFE0E13		//addi x28 x28 -1
 000E0463		//beq x28 x0 8
 FE000CE3		//beq x0 x0 -8
+00040E63		//beq x8 x0 28
 01100E93		//addi x29 x0 17
 0FF00E13		//addi x28 x0 255
 01CE0E33		//add x28 x28 x28
@@ -90,6 +106,7 @@ FE000AE3		//beq x0 x0 -12
 007F2223		//sw x7 4(x30)
 007F22A3		//sw x7 5(x30)
 007F2323		//sw x7 6(x30)
+00040863		//beq x8 x0 16
 FFFE0E13		//addi x28 x28 -1
 000E0463		//beq x28 x0 8
 FE000CE3		//beq x0 x0 -8
